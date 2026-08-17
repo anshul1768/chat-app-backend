@@ -12,11 +12,19 @@ import initializeSocket from "./services/socketService.js";
 
 const app = express();
 
+ origin: ["https://chat-app-frontend-five-lime.vercel.app","http://localhost:5173"]
+const corsOption = {
+  origin: (origin, callback) => {
 
-const corsOption={
-  origin:"*",
-  credentials:true
-}
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+
+  },
+  credentials: true
+};
 app.use(cors(corsOption));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
