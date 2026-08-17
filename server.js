@@ -11,20 +11,20 @@ import chatRouter from "./routes/chat.route.js";
 import initializeSocket from "./services/socketService.js";
 
 const app = express();
-
- const allowedOrigins = [
+const allowedOrigins = [
   "https://chat-app-frontend-five-lime.vercel.app",
   "http://localhost:5173"
 ];
+
 const corsOption = {
   origin: (origin, callback) => {
+    console.log("REQUEST ORIGIN:", origin);
 
-    if (allowedOrigins.includes(origin)) {
+    if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      callback(new Error("Not allowed by CORS"));
+      callback(new Error(`Not allowed by CORS: ${origin}`));
     }
-
   },
   credentials: true
 };
