@@ -27,8 +27,9 @@ const app = express();
 //   },
 //   credentials: true
 // };
+console.log(process.env.FRONTEND_URL)
 app.use(cors({
-  origin:"https://chat-app-frontend-five-lime.vercel.app/user-login",
+  origin:process.env.FRONTEND_URL,
   credentials:true,
 }));
 app.use(express.json());
