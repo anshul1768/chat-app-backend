@@ -12,7 +12,10 @@ import initializeSocket from "./services/socketService.js";
 
 const app = express();
 
- origin: ["https://chat-app-frontend-five-lime.vercel.app","http://localhost:5173"]
+ const allowedOrigins = [
+  "https://chat-app-frontend-five-lime.vercel.app",
+  "http://localhost:5173"
+];
 const corsOption = {
   origin: (origin, callback) => {
 
