@@ -11,24 +11,26 @@ import chatRouter from "./routes/chat.route.js";
 import initializeSocket from "./services/socketService.js";
 
 const app = express();
-const allowedOrigins = [
-  "https://chat-app-frontend-five-lime.vercel.app",
-  "http://localhost:5173"
-];
+// const allowedOrigins = [
+//   "https://chat-app-frontend-five-lime.vercel.app",
+//   "http://localhost:5173"
+// ];
 
-const corsOption = {
-  origin: (origin, callback) => {
-    console.log("REQUEST ORIGIN:", origin);
-
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error(`Not allowed by CORS: ${origin}`));
-    }
-  },
-  credentials: true
-};
-app.use(cors(corsOption));
+// const corsOption = {
+//   origin: (origin, callback) => {
+//     console.log("REQUEST ORIGIN:", origin);
+//     if (!origin || allowedOrigins.includes(origin)) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error(`Not allowed by CORS: ${origin}`));
+//     }
+//   },
+//   credentials: true
+// };
+app.use(cors({
+  origin:"https://chat-app-frontend-five-lime.vercel.app/user-login",
+  credentials:true,
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());//parse token
